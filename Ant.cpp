@@ -3,3 +3,7 @@
 // Assignment   :   Assignment 4 : Doodlebug Simulation
 // Date         :   11/26/2022.
 #include "Ant.h"
+
+Ant::Ant() {
+
+}

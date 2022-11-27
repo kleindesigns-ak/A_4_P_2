@@ -6,6 +6,7 @@
 
 class Organism {
 private:
+
 public:
-    //virtual void
+    //virtual void breed
 };
