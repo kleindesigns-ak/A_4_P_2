@@ -11,6 +11,7 @@ using namespace std;
 
 class Ant : public Organism {
 private:
+
 public:
     Ant();
 };

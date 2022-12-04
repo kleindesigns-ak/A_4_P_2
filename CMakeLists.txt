@@ -3,4 +3,4 @@ project(A_4_P_2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(A_4_P_2 main.cpp Organism.cpp Organism.h Doodlebug.cpp Doodlebug.h Ant.cpp Ant.h World.cpp World.h)
+add_executable(A_4_P_2 main.cpp Organism.cpp Organism.h Doodlebug.cpp Doodlebug.h Ant.cpp Ant.h World.cpp World.h FixMe.cpp)

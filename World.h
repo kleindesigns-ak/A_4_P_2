@@ -8,6 +8,9 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <vector>
+
 #include "Organism.h"
 #include "Ant.h"
 #include "Doodlebug.h"
@@ -21,5 +24,6 @@ private:
     Organism*  world[worldHeight][worldWidth];
 public:
     World();
-    void Draw(World *worldPtr);
+    void Draw();
+    Organism* getRandomEmptyLocation();
 };

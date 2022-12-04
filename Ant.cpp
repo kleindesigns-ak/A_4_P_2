@@ -5,5 +5,7 @@
 #include "Ant.h"
 
 Ant::Ant() {
-
+    ascii_identifier = 'o';
+    breedingRequirement = 3;
+    starveRequirement = -1;
 }

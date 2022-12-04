@@ -4,6 +4,8 @@
 // Date         :   11/26/2022.
 #include "World.h"
 
+#include <random>
+
 World::World() {
     // Initialize the world full of null pointers
     for (int y = 0; y < worldHeight; y++) {
@@ -14,19 +16,46 @@ World::World() {
 
 }
 
-void World::Draw(World *worldPtr) {
+void World::Draw() {
     // Draw out the instance world passed in by pointer
     for (int y = 0; y < worldHeight; y++) {
         for (int x = 0; x < worldWidth; x++) {
-            if (world[y][x] = nullptr) {
+            if (world[y][x] == nullptr) {
                 cout << " ";
-            } else if (world[y][x]) {
-                cout << "o";
             } else {
-                cout << "X";
+                cout << world[y][x]->getChildType();
             }
         }
         cout << endl;
     }
     cout << endl;
 }
+
+Organism *World::getRandomEmptyLocation() {
+    // Create a vector of ints to hold all possible cells
+    vector<int> possibleEmptyLocation[worldHeight * worldWidth];
+    int worldRow;
+    int worldColumn;
+
+    // Assign each element its corresponding index number
+    for (int location = 0; location < worldHeight * worldWidth; location++) {
+        possibleEmptyLocation->push_back(location);
+    }
+
+    // Scramble all the numbers
+    random_shuffle(possibleEmptyLocation->begin(), possibleEmptyLocation->end());
+
+    // All possible locations are now randomized
+    // Go through one at a time and compare the given location to make sure it is nullptr
+    for (int element = 0; element < possibleEmptyLocation->size(); element++) {
+        worldRow = possibleEmptyLocation->at(element) % worldHeight;
+        worldColumn = possibleEmptyLocation->at(element) / worldWidth;
+        if (this->world[worldRow][worldColumn] == nullptr) {
+            cout << "Returned from getRandomEmptyLocation() at " << endl << "Row    : " << worldRow << endl << "Column : " << worldColumn << endl;
+            return world[worldRow][worldColumn];
+        }
+    }
+
+    return nullptr;
+}
+
