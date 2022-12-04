@@ -24,6 +24,9 @@ private:
     Organism*  world[worldHeight][worldWidth];
 public:
     World();
+    static const int getWorldWidth();
+    static const int getWorldHeight();
     void Draw();
-    Organism* getRandomEmptyLocation();
+    int getRandomEmptyIndex();
+    void instantiateOrganism(int y, int x, Organism* newOrganism);
 };

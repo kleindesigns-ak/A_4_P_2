@@ -31,7 +31,7 @@ void World::Draw() {
     cout << endl;
 }
 
-Organism *World::getRandomEmptyLocation() {
+int World::getRandomEmptyIndex() {
     // Create a vector of ints to hold all possible cells
     vector<int> possibleEmptyLocation[worldHeight * worldWidth];
     int worldRow;
@@ -51,11 +51,23 @@ Organism *World::getRandomEmptyLocation() {
         worldRow = possibleEmptyLocation->at(element) % worldHeight;
         worldColumn = possibleEmptyLocation->at(element) / worldWidth;
         if (this->world[worldRow][worldColumn] == nullptr) {
-            cout << "Returned from getRandomEmptyLocation() at " << endl << "Row    : " << worldRow << endl << "Column : " << worldColumn << endl;
-            return world[worldRow][worldColumn];
+            cout << "Returned from getRandomEmptyIndex() at " << endl << "Row    : " << worldRow << endl << "Column : " << worldColumn << endl;
+            return possibleEmptyLocation->at(element);
         }
     }
 
-    return nullptr;
+    return NULL;
+}
+
+void World::instantiateOrganism(int y, int x, Organism* newOrganism) {
+    world[y][x] = newOrganism;
+}
+
+const int World::getWorldWidth() {
+    return worldWidth;
+}
+
+const int World::getWorldHeight() {
+    return worldHeight;
 }
 

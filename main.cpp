@@ -22,13 +22,26 @@ int main() {
 
     // Initialize the world with 'startingDoodlebugs' number of doodlebugs and 'startingAnts' number of ants in random locations
 
+    // Runs once per doodlebug to be added
+    Organism* temp;
+    int index;
+    int worldRow;
+    int worldColumn;
+    for (int doodlebug = 0; doodlebug < startingDoodlebugs; doodlebug++) {
+        temp = new Doodlebug;
+        index = DoodleZoo.getRandomEmptyIndex();
+        worldRow = index % DoodleZoo.getWorldHeight();
+        worldColumn = index / DoodleZoo.getWorldWidth();
+        DoodleZoo.instantiateOrganism(worldRow, worldColumn, temp);
+    }
     // Runs once per ant to be added
     for (int i = 0; i < startingAnts; i++) {
-        Organism* temp = new Ant; // FIXME : Start here next time -> Pass back the location in the world to place ants, don't just pass back the nullptr from the location as that does not give any information as to the location in the world.
-        DoodleZoo.getRandomEmptyLocation();
-        delete temp;
+        temp = new Ant;
+        index = DoodleZoo.getRandomEmptyIndex();
+        worldRow = index % DoodleZoo.getWorldHeight();
+        worldColumn = index / DoodleZoo.getWorldWidth();
+        DoodleZoo.instantiateOrganism(worldRow, worldColumn, temp);
     }
-
 
     cout << endl << "Welcome to the Doodlebug Simulator " << endl << endl << "Have you ever wanted to see how doodlebugs attack ants in the " << endl << "wild? Well sit back and get ready to watch a time-lapsed " << endl << "simulation of the ant vs doodlebug life cycle. " << endl << endl;
 
