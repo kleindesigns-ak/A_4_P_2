@@ -9,3 +9,11 @@ Ant::Ant() {
     breedingRequirement = 3;
     starveRequirement = -1;
 }
+
+void Ant::move() {
+
+}
+
+void Ant::breed() {
+
+}

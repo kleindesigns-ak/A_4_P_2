@@ -11,7 +11,10 @@ using namespace std;
 
 class Doodlebug : public Organism {
 private:
-
 public:
     Doodlebug();
+    void move(World *worldInstance) override;
+    void breed() /*override*/;
+    void eat();
+    void starve();
 };

@@ -14,4 +14,6 @@ private:
 
 public:
     Ant();
+    void move()     /*override*/;
+    void breed()    /*override*/;
 };

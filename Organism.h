@@ -5,17 +5,24 @@
 #pragma once
 #include <cstdlib>
 #include <ctime>
+#include "World.h"
+
+class World;
 
 class Organism {
 protected:
-    char ascii_identifier;
+    char ascii_identifier = '#';
     int roundsSurvived = 0;
     int breedingRequirement;
     int starveRequirement;
+    int curY, curX;
 
 public:
-    //virtual void breed
+    virtual void move(World *worldInstance);
+    virtual void breed() = 0;
+    void setCurY(int y);
+    void setCurX(int x);
     char getChildType();
     int getBreedingRequirement();
-    int getStarveRequirement();
+    static int getStarveRequirement();
 };
