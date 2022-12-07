@@ -29,11 +29,11 @@ public:
     void round();
     // During a move, organism must first be added to the new location before removing from the old, otherwise the reference to the organism object will be deleted
     void addOrganismToLocation(int y, int x, Organism* organism);
-    void removeOrganismFromLocation(int y, int x, Organism* organism);
+    void removeOrganismFromLocation(int organismRow, int organismColumn, Organism* pOrganismToBeRemoved);
     Organism* getCellOrganismPointer(int row, int column);
     void addOrganismToList(int row, int column, Organism* organism);
-    void removeOrganismFromList(int row, int column, Organism* organism);
-    void killOrganism(int row, int column, Organism* organism);
+    void removeOrganismFromList(int rowOfOrganism, int columnOfOrganism, Organism* pOrganismToBeDelisted);
+    void killOrganism(int rowOfOrganism, int columnOfOrganism, Organism* pOrganismToBeKilled);
     void getRandomEmptyIndexInWorld(int &row, int &column);
     void randSearchAdjacentLocations(int row, int column, int &targetRow, int &targetColumn, char organismIdentifier);
     void instantiateOrganismRandomDirection(int row, int column, Organism * newOrganism);

@@ -100,32 +100,32 @@ void World::addOrganismToList(int row, int column, Organism *organism) {
     }
 }
 
-void World::removeOrganismFromList(int row, int column, Organism *organism) {
-
-    vector<vector<int>>::const_iterator organismListing;
-
-    switch (organism->getChildType()) {
+void World::removeOrganismFromList(int rowOfOrganism, int columnOfOrganism, Organism *pOrganismToBeDelisted) {
+    int counter = 0;
+    switch (pOrganismToBeDelisted->getChildType()) {
         case 'o': {
-            for (organismListing = antPopulation.begin(); organismListing != antPopulation.end() ; organismListing++) {
-                if (*(organismListing->begin()) == row) {
-                    if (*(organismListing->end() - 1) == column) {
-                        antPopulation.erase(organismListing);
-                        cout << "Ant eaten at " << endl << "Row    : " << row << endl << "Column : " << column << endl;
+            for (vector<int> coordinate : antPopulation) {
+                if (coordinate.at(0) == rowOfOrganism) {
+                    if (coordinate.at(1) == columnOfOrganism) {
+                        antPopulation.erase(antPopulation.begin() + counter);
+                        cout << "Ant eaten or moved at " << endl << "Row    : " << rowOfOrganism << endl << "Column : " << columnOfOrganism << endl;
+                        return;
                     }
                 }
+                counter ++;
             }
-            break;
         }
         default: {
-            for (organismListing = doodlebugsPopulation.begin(); organismListing != doodlebugsPopulation.end() ; organismListing++) {
-                if (*(organismListing->begin()) == row) {
-                    if (*(organismListing->end() - 1) == column) {
-                        doodlebugsPopulation.erase(organismListing);
-                        cout << "Doodlebug starved at " << endl << "Row    : " << row << endl << "Column : " << column << endl;
+            for (vector<int> coordinate : doodlebugsPopulation) {
+                if (coordinate.at(0) == rowOfOrganism) {
+                    if (coordinate.at(1) == columnOfOrganism) {
+                        doodlebugsPopulation.erase(doodlebugsPopulation.begin() + counter);
+                        cout << "Doodlebug starved or moved at " << endl << "Row    : " << rowOfOrganism << endl << "Column : " << columnOfOrganism << endl;
+                        return;
                     }
                 }
+                counter ++;
             }
-            break;
         }
     }
 }
@@ -289,22 +289,22 @@ void World::addOrganismToLocation(int y, int x, Organism* organism) {
     addOrganismToList(y, x, organism);
 }
 
-void World::removeOrganismFromLocation(int y, int x, Organism* organism) {
+void World::removeOrganismFromLocation(int organismRow, int organismColumn, Organism* pOrganismToBeRemoved) {
     // Remove from the world of Organism *
-    world[y][x] = nullptr;
+    world[organismRow][organismColumn] = nullptr;
 
-    // Don't have to update integral x and y to each organism as it will either be overwritten through addOrganismToLocation() or will be deleted when starving or being eaten
+    // Don't have to update integral organismColumn and organismRow to each pOrganismToBeRemoved as it will either be overwritten through addOrganismToLocation() or will be deleted when starving or being eaten
 
     // Remove from coordinate vector saved in the World class
-    removeOrganismFromList(y, x, organism);
+    removeOrganismFromList(organismRow, organismColumn, pOrganismToBeRemoved);
 }
 
 Organism *World::getCellOrganismPointer(int row, int column) {
     return world[row][column];
 }
 
-void World::killOrganism(int row, int column, Organism *organism) {
-    Organism *temp = organism;
-    removeOrganismFromLocation(row, column, organism);
-    delete organism;
+void World::killOrganism(int rowOfOrganism, int columnOfOrganism, Organism *pOrganismToBeKilled) {
+    Organism *temp = pOrganismToBeKilled;
+    removeOrganismFromLocation(rowOfOrganism, columnOfOrganism, pOrganismToBeKilled);
+    delete pOrganismToBeKilled;
 }
